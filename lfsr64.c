@@ -2,27 +2,7 @@
  * This is a simple 64-bit linear feedback shift register, printing
  * pseudo-random bytes to stdout.
  *
- * See http://en.wikipedia.org/wiki/Linear_feedback_shift_register
- *
- * I'm using the inner loop from [1] with the 64-bit tap positions
- * from [2]. I also pre-compute the combined feedback terms for a
- * byte's worth of output and bulk-xor them in for a ~2x speedup
- * (I forget where I first saw that technique).
- *
- * 1. http://users.ece.cmu.edu/~koopman/lfsr/index.html
- * 2. Wayne Stahnke. Primitive binary polynomials . Math. Comp. 27 (1973) 977-980. MR 0327722
- *    http://dx.doi.org/10.2307/2005535
- *    http://www.ams.org/journals/mcom/1973-27-124/S0025-5718-1973-0327722-7/S0025-5718-1973-0327722-7.pdf
- *
  * Build like so: clang -O3 -Wall -o lfsr64 lfsr64.c
- * Suggested usage for checking block device health:
- *   lfsr64 $$ | dd iflag=fullblock bs=256k of=/dev/foo
- *   cmp <(lfsr64 $$) /dev/foo
- *
- * (The lazyweb suggests that "oflag=dsync" will help with
- * "task blkid:NNNN blocked for more than 120 seconds" errors on
- * slow USB sticks)
- *
  */
 
 #include <stdint.h>
