@@ -33,7 +33,7 @@ Usage::
 
   usage: ./lfsr64 [seed]
 
-The seed is optional, if not present will default to ``time(3)``.
+The seed is optional, if not present it will default to ``time(3)``.
 Zero is not valid as the seed value, as that would lock the LFSR in
 a permanent all-zeros state.
 
