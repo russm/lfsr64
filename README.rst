@@ -13,7 +13,7 @@ output and bulk-xor them in for a ~2x speedup over iterating bit-by-bit
 
 .. [1] `Maximal Length LFSR Feedback Terms
    <http://users.ece.cmu.edu/~koopman/lfsr/index.html>`_
-.. [2] Wayne Stahnke. Primitive binary polynomials . Math. Comp. 27
+.. [2] Wayne Stahnke. *Primitive binary polynomials*. Math. Comp. 27
    (1973) 977-980. MR `0327722
    <http://www.ams.org/mathscinet-getitem?mr=327722>`_
 
