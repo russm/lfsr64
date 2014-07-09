@@ -43,4 +43,6 @@ Check the health of a block device::
   # cmp <(lfsr64 $$) /dev/foo
 
 The lazyweb suggests that ``oflag=dsync`` can help with "task blkid:NNNN
-blocked for more than 120 seconds" errors on slow USB sticks.
+blocked for more than 120 seconds" errors on slow USB sticks. If the
+sink is faster than this source, ``iflag=fullblock`` will stop partial
+blocks from being passed through to the sink.
