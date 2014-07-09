@@ -6,7 +6,7 @@ A simple 64-bit `linear feedback shift register
 <http://en.wikipedia.org/wiki/Linear_feedback_shift_register>`_,
 printing pseudo-random bytes to stdout.
 
-From an optimised inner loop [1]_ with Stahnke's 64-bit tap positions
+A Galois configuration LFSR via [1]_ with Stahnke's 64-bit tap positions
 [2]_, I pre-compute the combined feedback terms for a byte's worth of
 output and bulk-xor them in for a ~2x speedup over iterating bit-by-bit
 (I forget where I first saw that technique).
