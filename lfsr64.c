@@ -11,9 +11,33 @@
 #include <unistd.h>
 #include <time.h>
 #include <stdio.h>
+#include <fcntl.h>
 
 // not actually extern, just down the bottom
 extern uint64_t byte_feedback[];
+
+uint64_t random_seed()
+{
+  uint64_t lfsr;
+  int fd_urandom;
+
+  fd_urandom = open("/dev/urandom", O_RDONLY);
+  if (fd_urandom == -1) {
+    perror("open(\"/dev/urandom\", O_RDONLY)");
+    return 0;
+  }
+  if (read(fd_urandom, &lfsr, sizeof(lfsr)) != sizeof(lfsr)) {
+    perror("read(fd_urandom, &lfsr, sizeof(lfsr))");
+    return 0;
+  }
+  close(fd_urandom);
+
+  if (lfsr == 0) {
+    fprintf(stderr, "WTF: read 64 zero bits from /dev/urandom, what are the odds?\n");
+  }
+
+  return lfsr;
+}
 
 int main(int argc, char *argv[])
 {
@@ -21,7 +45,7 @@ int main(int argc, char *argv[])
 
   switch (argc) {
   case 1:
-    lfsr = time(NULL);
+    lfsr = random_seed();
     break;
   case 2:
     lfsr = strtoul(argv[1], NULL, 0);

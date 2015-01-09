@@ -33,9 +33,9 @@ Usage::
 
   usage: ./lfsr64 [seed]
 
-The seed is optional, if not present it will default to ``time(3)``.
-Zero is not valid as the seed value, as that would lock the LFSR in
-a permanent all-zeros state.
+The seed is optional, if not present 64 bits of initial state will be
+read from /dev/urandom. Zero is not valid as the seed value, as that
+would lock the LFSR in a permanent all-zeros state.
 
 Check the health of a block device::
 
